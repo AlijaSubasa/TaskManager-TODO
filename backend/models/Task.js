@@ -1,6 +1,7 @@
 const db = require('../config/db');
 
 class Task {
+<<<<<<< HEAD
     // 1. Dohvaćanje zadataka uz filtriranje
     static async getAll(userId, categoryId = null, status = null) {
         let sql = `
@@ -37,17 +38,38 @@ class Task {
     }
 
     // 3. Ažuriranje (Uključujući status)
+=======
+    static async getAll(userId) {
+        const [rows] = await db.execute(
+            "SELECT t.*, c.name as category_name FROM tasks t LEFT JOIN categories c ON t.category_id = c.id WHERE t.user_id = ?",
+            [userId]
+        );
+        return rows;
+    }
+    static async create(title, description, category_id, user_id) {
+        return db.execute(
+            "INSERT INTO tasks (title, description, category_id, user_id) VALUES (?, ?, ?, ?)",
+            [title, description, category_id, user_id]
+        );
+    }
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
     static async update(id, title, description, status, category_id) {
         return db.execute(
             "UPDATE tasks SET title=?, description=?, status=?, category_id=? WHERE id=?",
             [title, description, status, category_id, id]
         );
     }
+<<<<<<< HEAD
 
     // 4. Brisanje
+=======
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
     static async delete(id) {
         return db.execute("DELETE FROM tasks WHERE id = ?", [id]);
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
 module.exports = Task;

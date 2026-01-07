@@ -28,6 +28,7 @@ exports.login = async (req, res) => {
                 username: user.username
             }
         });
+<<<<<<< HEAD
     }  catch (err) {
     // OVE DVIJE LINIJE ĆE TI REĆI SVE:
     console.log("--- DETALJI GREŠKE ---");
@@ -35,4 +36,9 @@ exports.login = async (req, res) => {
 
     res.status(500).json({ error: err.message });
 }
+=======
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
 };

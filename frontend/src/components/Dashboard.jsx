@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
@@ -7,10 +8,20 @@ const Dashboard = ({ user, onLogout }) => {
     const [categories, setCategories] = useState([]);
 
     // Form State (za dodavanje)
+=======
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Dashboard = ({ user, onLogout }) => {
+    const [tasks, setTasks] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [categoryId, setCategoryId] = useState(1);
 
+<<<<<<< HEAD
     // Filter State (NOVO)
     const [filterCategory, setFilterCategory] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
@@ -33,10 +44,19 @@ const Dashboard = ({ user, onLogout }) => {
                 // 3. Učitaj kategorije (ovo se može i optimizirati da se ne zove svaki put, ali je ok za sad)
                 const resCats = await axios.get('http://localhost:5000/api/categories');
 
+=======
+    const loadData = async () => {
+        try {
+            // Provjera da li user postoji prije poziva
+            if (user && user.id) {
+                const resTasks = await axios.get(`http://localhost:5000/api/tasks/${user.id}`);
+                const resCats = await axios.get('http://localhost:5000/api/categories');
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
                 setTasks(resTasks.data);
                 setCategories(resCats.data);
             }
         } catch (err) {
+<<<<<<< HEAD
             console.error("Greška pri učitavanju podataka.", err);
         }
     }, [user, filterCategory, filterStatus]); // Ovisi o useru i filterima
@@ -45,6 +65,15 @@ const Dashboard = ({ user, onLogout }) => {
     useEffect(() => {
         loadData();
     }, [loadData]);
+=======
+            console.error("Greška pri učitavanju podataka.");
+        }
+    };
+
+    useEffect(() => {
+        loadData();
+    }, [user]); // Dodano user kao dependency
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
 
     const handleAddTask = async (e) => {
         e.preventDefault();
@@ -55,10 +84,15 @@ const Dashboard = ({ user, onLogout }) => {
                 category_id: categoryId,
                 user_id: user.id
             });
+<<<<<<< HEAD
             // Reset forme
             setTitle('');
             setDescription('');
             // Osvježi listu
+=======
+            setTitle('');
+            setDescription('');
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
             loadData();
         } catch (err) {
             alert("Greška pri dodavanju.");
@@ -78,7 +112,12 @@ const Dashboard = ({ user, onLogout }) => {
 
     const toggleStatus = async (task) => {
         let nextStatus;
+<<<<<<< HEAD
         // Rotacija statusa
+=======
+
+        // Logika za kruženje kroz statuse
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
         if (task.status === 'Na čekanju') {
             nextStatus = 'U tijeku';
         } else if (task.status === 'U tijeku') {
@@ -91,6 +130,7 @@ const Dashboard = ({ user, onLogout }) => {
             await axios.put(`http://localhost:5000/api/tasks/${task.id}`, {
                 title: task.title,
                 description: task.description || '',
+<<<<<<< HEAD
                 status: nextStatus,
                 category_id: task.category_id
             });
@@ -98,19 +138,36 @@ const Dashboard = ({ user, onLogout }) => {
         } catch (err) {
             console.error("Greška pri izmjeni statusa:", err);
             alert("Greška pri ažuriranju statusa.");
+=======
+                status: nextStatus, // Šaljemo "U tijeku" backendu
+                category_id: task.category_id
+            });
+            loadData(); // Osvježava prikaz
+        } catch (err) {
+            console.error("Greška pri izmjeni statusa:", err);
+            alert("Provjerite da li ste ažurirali ENUM u bazi na 'U tijeku'");
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
         }
     };
 
     return (
+<<<<<<< HEAD
         <div className="dashboard" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
             {/* HEADER */}
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h2>Moji Zadaci (Korisnik: {user.username})</h2>
                 <button onClick={onLogout} style={{ background: '#dc3545', color: 'white', border: 'none', padding: '8px 15px', cursor: 'pointer', borderRadius: '4px' }}>
+=======
+        <div className="dashboard">
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h2>Moji Zadaci (Korisnik: {user.username})</h2>
+                <button onClick={onLogout} style={{ background: '#666', color: 'white', padding: '5px 10px' }}>
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
                     Odjavi se
                 </button>
             </header>
 
+<<<<<<< HEAD
             <hr style={{ marginBottom: '20px' }} />
 
             {/* FORMA ZA DODAVANJE */}
@@ -157,10 +214,30 @@ const Dashboard = ({ user, onLogout }) => {
                     style={{ padding: '5px' }}
                 >
                     <option value="">Sve kategorije</option>
+=======
+            <hr />
+
+            <form onSubmit={handleAddTask} style={{ marginBottom: '20px' }}>
+                <input
+                    type="text"
+                    placeholder="Naslov zadatka"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Opis (opciono)"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
                     {categories.map(cat => (
                         <option key={cat.id} value={cat.id}>{cat.name}</option>
                     ))}
                 </select>
+<<<<<<< HEAD
 
                 <select
                     value={filterStatus}
@@ -224,6 +301,50 @@ const Dashboard = ({ user, onLogout }) => {
                         </tr>
                     ))
                 )}
+=======
+                <button type="submit">Dodaj zadatak</button>
+            </form>
+
+            <table border="1" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+                <thead>
+                <tr style={{ background: '#f4f4f4' }}>
+                    <th>Zadatak</th>
+                    <th>Kategorija</th>
+                    <th>Status</th>
+                    <th>Akcije</th>
+                </tr>
+                </thead>
+                <tbody>
+                {tasks.map(task => (
+                    <tr key={task.id}>
+                        <td style={{ padding: '10px' }}>
+                            <strong>{task.title}</strong>
+                            <br/>
+                            <small>{task.description}</small>
+                        </td>
+                        <td>{task.category_name || 'Nema kategorije'}</td>
+                        <td style={{
+                            color: task.status === 'Završeno' ? 'green' :
+                                task.status === 'U tijeku' ? 'orange' : 'red',
+                            fontWeight: 'bold'
+                        }}>
+                            {task.status}
+                        </td>
+                        <td>
+                            <button onClick={() => toggleStatus(task)}>
+                                Promijeni status
+                            </button>
+                            <button
+                                className="delete-btn"
+                                onClick={() => handleDelete(task.id)}
+                                style={{ marginLeft: '10px' }}
+                            >
+                                Obriši
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+>>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
                 </tbody>
             </table>
         </div>
