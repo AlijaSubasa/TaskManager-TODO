@@ -6,10 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
 // 1. Uvezi rute
 const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');

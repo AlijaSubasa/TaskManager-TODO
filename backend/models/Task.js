@@ -2,6 +2,7 @@ const db = require('../config/db');
 
 class Task {
 <<<<<<< HEAD
+<<<<<<< HEAD
     // 1. Dohvaćanje zadataka uz filtriranje
     static async getAll(userId, categoryId = null, status = null) {
         let sql = `
@@ -39,6 +40,8 @@ class Task {
 
     // 3. Ažuriranje (Uključujući status)
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
     static async getAll(userId) {
         const [rows] = await db.execute(
             "SELECT t.*, c.name as category_name FROM tasks t LEFT JOIN categories c ON t.category_id = c.id WHERE t.user_id = ?",
@@ -52,7 +55,10 @@ class Task {
             [title, description, category_id, user_id]
         );
     }
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
     static async update(id, title, description, status, category_id) {
         return db.execute(
             "UPDATE tasks SET title=?, description=?, status=?, category_id=? WHERE id=?",
@@ -60,16 +66,22 @@ class Task {
         );
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     // 4. Brisanje
 =======
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
     static async delete(id) {
         return db.execute("DELETE FROM tasks WHERE id = ?", [id]);
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
 module.exports = Task;

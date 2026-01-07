@@ -10,4 +10,8 @@ const pool = mysql.createPool({
     connectionLimit: 10
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c88e26 (Registracija)
 module.exports = pool.promise();

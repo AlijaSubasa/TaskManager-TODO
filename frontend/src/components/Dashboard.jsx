@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
@@ -9,6 +10,8 @@ const Dashboard = ({ user, onLogout }) => {
 
     // Form State (za dodavanje)
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -16,11 +19,15 @@ const Dashboard = ({ user, onLogout }) => {
     const [tasks, setTasks] = useState([]);
     const [categories, setCategories] = useState([]);
 
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [categoryId, setCategoryId] = useState(1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Filter State (NOVO)
     const [filterCategory, setFilterCategory] = useState('');
@@ -45,17 +52,23 @@ const Dashboard = ({ user, onLogout }) => {
                 const resCats = await axios.get('http://localhost:5000/api/categories');
 
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
     const loadData = async () => {
         try {
             // Provjera da li user postoji prije poziva
             if (user && user.id) {
                 const resTasks = await axios.get(`http://localhost:5000/api/tasks/${user.id}`);
                 const resCats = await axios.get('http://localhost:5000/api/categories');
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
                 setTasks(resTasks.data);
                 setCategories(resCats.data);
             }
         } catch (err) {
+<<<<<<< HEAD
 <<<<<<< HEAD
             console.error("Greška pri učitavanju podataka.", err);
         }
@@ -66,6 +79,8 @@ const Dashboard = ({ user, onLogout }) => {
         loadData();
     }, [loadData]);
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
             console.error("Greška pri učitavanju podataka.");
         }
     };
@@ -73,7 +88,10 @@ const Dashboard = ({ user, onLogout }) => {
     useEffect(() => {
         loadData();
     }, [user]); // Dodano user kao dependency
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
 
     const handleAddTask = async (e) => {
         e.preventDefault();
@@ -85,6 +103,7 @@ const Dashboard = ({ user, onLogout }) => {
                 user_id: user.id
             });
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Reset forme
             setTitle('');
             setDescription('');
@@ -93,6 +112,10 @@ const Dashboard = ({ user, onLogout }) => {
             setTitle('');
             setDescription('');
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+            setTitle('');
+            setDescription('');
+>>>>>>> 2c88e26 (Registracija)
             loadData();
         } catch (err) {
             alert("Greška pri dodavanju.");
@@ -113,11 +136,16 @@ const Dashboard = ({ user, onLogout }) => {
     const toggleStatus = async (task) => {
         let nextStatus;
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Rotacija statusa
 =======
 
         // Logika za kruženje kroz statuse
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+
+        // Logika za kruženje kroz statuse
+>>>>>>> 2c88e26 (Registracija)
         if (task.status === 'Na čekanju') {
             nextStatus = 'U tijeku';
         } else if (task.status === 'U tijeku') {
@@ -131,6 +159,7 @@ const Dashboard = ({ user, onLogout }) => {
                 title: task.title,
                 description: task.description || '',
 <<<<<<< HEAD
+<<<<<<< HEAD
                 status: nextStatus,
                 category_id: task.category_id
             });
@@ -139,6 +168,8 @@ const Dashboard = ({ user, onLogout }) => {
             console.error("Greška pri izmjeni statusa:", err);
             alert("Greška pri ažuriranju statusa.");
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
                 status: nextStatus, // Šaljemo "U tijeku" backendu
                 category_id: task.category_id
             });
@@ -146,11 +177,15 @@ const Dashboard = ({ user, onLogout }) => {
         } catch (err) {
             console.error("Greška pri izmjeni statusa:", err);
             alert("Provjerite da li ste ažurirali ENUM u bazi na 'U tijeku'");
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
         }
     };
 
     return (
+<<<<<<< HEAD
 <<<<<<< HEAD
         <div className="dashboard" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
             {/* HEADER */}
@@ -158,15 +193,21 @@ const Dashboard = ({ user, onLogout }) => {
                 <h2>Moji Zadaci (Korisnik: {user.username})</h2>
                 <button onClick={onLogout} style={{ background: '#dc3545', color: 'white', border: 'none', padding: '8px 15px', cursor: 'pointer', borderRadius: '4px' }}>
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
         <div className="dashboard">
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>Moji Zadaci (Korisnik: {user.username})</h2>
                 <button onClick={onLogout} style={{ background: '#666', color: 'white', padding: '5px 10px' }}>
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
                     Odjavi se
                 </button>
             </header>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             <hr style={{ marginBottom: '20px' }} />
 
@@ -215,6 +256,8 @@ const Dashboard = ({ user, onLogout }) => {
                 >
                     <option value="">Sve kategorije</option>
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
             <hr />
 
             <form onSubmit={handleAddTask} style={{ marginBottom: '20px' }}>
@@ -232,11 +275,15 @@ const Dashboard = ({ user, onLogout }) => {
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
                     {categories.map(cat => (
                         <option key={cat.id} value={cat.id}>{cat.name}</option>
                     ))}
                 </select>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                 <select
@@ -302,6 +349,8 @@ const Dashboard = ({ user, onLogout }) => {
                     ))
                 )}
 =======
+=======
+>>>>>>> 2c88e26 (Registracija)
                 <button type="submit">Dodaj zadatak</button>
             </form>
 
@@ -344,7 +393,10 @@ const Dashboard = ({ user, onLogout }) => {
                         </td>
                     </tr>
                 ))}
+<<<<<<< HEAD
 >>>>>>> 059a9ebaea32d79da9bd0ff70a73cb561d801a49
+=======
+>>>>>>> 2c88e26 (Registracija)
                 </tbody>
             </table>
         </div>
